@@ -1,4 +1,5 @@
 import base.GameObjectManager;
+import scene.BossScene;
 import scene.SceneManager;
 import scene.StartScene;
 import scene.VictoryScene;

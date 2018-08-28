@@ -30,7 +30,7 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
 
     public Player() {
         this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/hurt.wav");
-        this.hitPoints = 3;
+        this.hitPoints = 3000;
         this.force = 1;
         this.velocity = new Vector2D();
         this.boxCollider = new BoxCollider(60, 50);

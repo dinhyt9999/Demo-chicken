@@ -36,7 +36,8 @@ public class BossScene implements Scene {
 
     private void setupBoss() {
         Boss boss = GameObjectManager.instance.recycle(Boss.class);
-        boss.position.set(400, 50);
+        boss.position.set(500, 100);
+        boss.velocity.set(1, 0);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package game.enemy.boss;
 
+import action.*;
+import base.FrameCounter;
 import base.GameObject;
 import base.GameObjectManager;
 import base.Vector2D;
@@ -10,12 +12,8 @@ import physic.HitPoints;
 import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
-import renderer.OvalRenderer;
 import scene.SceneManager;
 import scene.VictoryScene;
-
-import javax.sound.sampled.Clip;
-import java.awt.*;
 
 public class Boss extends GameObject implements PhysicBody, HitPoints {
 
@@ -25,6 +23,8 @@ public class Boss extends GameObject implements PhysicBody, HitPoints {
     private int hitPoints;
     private static final int hp = 10;
 
+    public BossRoundShoot bossRoundShoot;
+
     public Boss() {
         this.hitPoints = hp;
         this.velocity = new Vector2D();
@@ -32,9 +32,51 @@ public class Boss extends GameObject implements PhysicBody, HitPoints {
         this.boxCollider = new BoxCollider(200, 200);
         this.runHitObject = new RunHitObject(Player.class);
 
-        this.attributes.add(new BossRoundShoot());
         this.attributes.add(new BossTripleShoot());
         this.attributes.add(new BossMissileShoot());
+
+        this.bossRoundShoot = new BossRoundShoot();
+
+        this.configAction();
+    }
+
+    public void configAction() {
+        Action moveAction = new ActionAdapter() {
+            FrameCounter frameCounter = new FrameCounter(50);
+
+            @Override
+            public boolean run(GameObject owner) {
+                Boss boss = (Boss) owner;
+                if (owner.position.addUp(boss.velocity).x > 924) ((Boss) owner).velocity.set(-1, 0);
+                if (owner.position.addUp(boss.velocity).x < 100) ((Boss) owner).velocity.set(1, 0);
+                owner.position.addUp(boss.velocity);
+                return frameCounter.checkCounter();
+            }
+
+            @Override
+            public void reset() {
+                this.frameCounter.resetCount();
+            }
+        };
+
+        Action roundShootAction = new ActionAdapter() {
+            @Override
+            public boolean run(GameObject owner) {
+                Boss boss = (Boss) owner;
+                boss.bossRoundShoot.run(boss);
+                return true;
+            }
+        };
+
+        this.addAction(
+                new RepeatActionForever(
+                        new SequenceAction(
+                                moveAction,
+                                roundShootAction,
+                                new WaitAction(40)
+                        )
+                )
+        );
     }
 
     @Override
