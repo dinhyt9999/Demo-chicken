@@ -10,10 +10,7 @@ import game.enemy.growupenemy.CreateEnemyGrowUp;
 import game.enemy.meteor.CreateMeteor;
 import game.enemy.roundshootenemy.CreateRoundShootEnemy;
 import game.gift.CreateBulletGift;
-import game.player.BagEnegyBullet;
-import game.player.EnegyBullet;
-import game.player.HitPointPlayer;
-import game.player.Player;
+import game.player.*;
 import game.score.Score;
 import utils.Utils;
 
@@ -38,11 +35,15 @@ public class EnemyScene implements Scene {
 
         GameObjectManager.instance.add(new BagEnegyBullet());
         GameObjectManager.instance.add(new EnegyBullet());
+        GameObjectManager.instance.add(new BulletEnergyText());
 
         GameObjectManager.instance.add(new Score());
 
         GameObjectManager.instance.add(new HitPointPlayer());
+        GameObjectManager.instance.add(new HPText());
+
         GameObjectManager.instance.add(new CreateBulletGift());
+
         this.clip= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/bgmusic.wav");
         this.clip.loop(-1);
     }

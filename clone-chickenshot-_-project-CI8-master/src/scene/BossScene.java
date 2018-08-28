@@ -4,10 +4,7 @@ import base.GameObjectManager;
 import game.background.Background;
 import game.enemy.boss.Boss;
 import game.gift.CreateBulletGift;
-import game.player.BagEnegyBullet;
-import game.player.EnegyBullet;
-import game.player.HitPointPlayer;
-import game.player.Player;
+import game.player.*;
 import game.score.Score;
 
 public class BossScene implements Scene {
@@ -22,10 +19,13 @@ public class BossScene implements Scene {
 
         GameObjectManager.instance.add(new BagEnegyBullet());
         GameObjectManager.instance.add(new EnegyBullet());
+        GameObjectManager.instance.add(new BulletEnergyText());
 
         GameObjectManager.instance.add(new Score());
 
         GameObjectManager.instance.add(new HitPointPlayer());
+        GameObjectManager.instance.add(new HPText());
+
         GameObjectManager.instance.add(new CreateBulletGift());
     }
 

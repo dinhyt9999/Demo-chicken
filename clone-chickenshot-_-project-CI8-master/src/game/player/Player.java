@@ -11,13 +11,11 @@ import physic.HitPoints;
 import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
-import renderer.PolygonRenderer;
 import scene.GameOverScene;
 import scene.SceneManager;
 import utils.Utils;
 
 import javax.sound.sampled.Clip;
-import java.awt.*;
 
 public class Player extends GameObject implements PhysicBody, HitPoints {
     public Vector2D velocity;
@@ -30,14 +28,10 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
 
     public Player() {
         this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/hurt.wav");
-        this.hitPoints = 3000;
+        this.hitPoints = 300;
         this.force = 1;
         this.velocity = new Vector2D();
         this.boxCollider = new BoxCollider(60, 50);
-//        this.renderer = new PolygonRenderer(Color.RED,
-//                new Vector2D(8,0),
-//                new Vector2D(0, 20),
-//                new Vector2D(16, 20));
         this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/spaceship.png", 60, 50);
         this.attributes.add(new PlayerShoot());
         this.attributes.add(new PlayerMove());
@@ -47,7 +41,6 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
     @Override
     public void run() {
         super.run();
-        //   ((PolygonRenderer) this.renderer).angle = this.angle;
         this.boxCollider.position.set(this.position.x - 30, this.position.y - 25);
         this.runHitObject.run(this);
     }
