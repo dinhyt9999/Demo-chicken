@@ -21,7 +21,7 @@ public class Boss extends GameObject implements PhysicBody, HitPoints {
     public BoxCollider boxCollider;
     private RunHitObject runHitObject;
     private int hitPoints;
-    private static final int hp = 10;
+    private static final int hp = 30;
 
     public BossRoundShoot bossRoundShoot;
 
