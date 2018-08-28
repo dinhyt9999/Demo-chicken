@@ -8,13 +8,13 @@ import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
 
-public class BulletEnemy extends GameObject implements PhysicBody {
+public class BulletEnemy2 extends GameObject implements PhysicBody {
 
     public Vector2D velocity;
     public BoxCollider boxCollider;
     private RunHitObject runHitObject;
 
-    public BulletEnemy() {
+    public BulletEnemy2() {
         this.velocity = new Vector2D();
         this.boxCollider = new BoxCollider(20, 20);
         this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/easter-egg.png", 20, 20);
@@ -42,3 +42,4 @@ public class BulletEnemy extends GameObject implements PhysicBody {
         this.isAlive = false;
     }
 }
+

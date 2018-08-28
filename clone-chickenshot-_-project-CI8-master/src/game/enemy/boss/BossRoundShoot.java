@@ -1,7 +1,7 @@
 package game.enemy.boss;
 
 import base.*;
-import game.enemy.BulletEnemy;
+import game.enemy.BulletEnemy2;
 import utils.Utils;
 
 import javax.sound.sampled.Clip;
@@ -12,7 +12,7 @@ public class BossRoundShoot extends GameObject {
 
     public void run(Boss gameObject) {
         for (double angle = 0.0; angle < 360.0; angle += 360 / 15) {
-            BulletEnemy bulletEnemy = GameObjectManager.instance.recycle(BulletEnemy.class);
+            BulletEnemy2 bulletEnemy = GameObjectManager.instance.recycle(BulletEnemy2.class);
             bulletEnemy.position.set(gameObject.position);
             bulletEnemy.velocity.set(new Vector2D(2, 0).rotate(angle));
         }
