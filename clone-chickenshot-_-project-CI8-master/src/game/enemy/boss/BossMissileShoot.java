@@ -14,7 +14,7 @@ public class BossMissileShoot implements Attribute<Boss> {
     private FrameCounter frameCounter = new FrameCounter(300);
 
     public BossMissileShoot() {
-        this.clip= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
+        this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
     }
 
     @Override

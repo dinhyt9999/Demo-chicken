@@ -39,12 +39,19 @@ public class EnemyScene implements Scene {
 
         GameObjectManager.instance.add(new Score());
 
+        GameObjectManager.instance.add(new BagHpPlayer());
         GameObjectManager.instance.add(new HitPointPlayer());
         GameObjectManager.instance.add(new HPText());
 
+        GameObjectManager.instance.add(new BagBulletLevel());
+        GameObjectManager.instance.add(new LevelBullet());
+        GameObjectManager.instance.add(new BulletLevel());
+
+
         GameObjectManager.instance.add(new CreateBulletGift());
 
-        this.clip= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/bgmusic.wav");
+
+        this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/bgmusic.wav");
         this.clip.loop(-1);
     }
 

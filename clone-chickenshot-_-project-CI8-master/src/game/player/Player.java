@@ -3,8 +3,13 @@ package game.player;
 import base.GameObject;
 import base.Vector2D;
 import game.enemy.BulletEnemy;
+import game.enemy.MissileEnemy;
+import game.enemy.enemybehind.EnemyBehind;
 import game.enemy.enemymatrix.EnemyMatrix;
 import game.enemy.enemytravel.EnemyTravel;
+import game.enemy.growupenemy.EnemyGrowUp;
+import game.enemy.meteor.Meteor;
+import game.enemy.roundshootenemy.RoundShootEnemy;
 import game.gift.BulletGift;
 import physic.BoxCollider;
 import physic.HitPoints;
@@ -28,7 +33,7 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
 
     public Player() {
         this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/hurt.wav");
-        this.hitPoints = 300;
+        this.hitPoints = 150;
         this.force = 1;
         this.velocity = new Vector2D();
         this.boxCollider = new BoxCollider(60, 50);
@@ -59,23 +64,23 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
 
     @Override
     public void getHitPoint(GameObject gameObject) {
-        boolean hited=false;
-        if (gameObject instanceof EnemyMatrix) {
+        boolean hited = false;
+        if (gameObject instanceof EnemyMatrix
+                || gameObject instanceof EnemyTravel
+                || gameObject instanceof Meteor
+                || gameObject instanceof EnemyGrowUp
+                || gameObject instanceof RoundShootEnemy
+                || gameObject instanceof EnemyBehind) {
             this.hitPoints -= 3;
             if (this.force > 1) this.force--;
-            hited=true;
+            hited = true;
         }
-        if (gameObject instanceof EnemyTravel) {
-            this.hitPoints -= 3;
-            if (this.force > 1) this.force--;
-            hited=true;
-        }
-        if (gameObject instanceof BulletEnemy) {
+        if (gameObject instanceof BulletEnemy || gameObject instanceof MissileEnemy) {
             this.hitPoints--;
             if (this.force > 1) this.force--;
-           hited=true;
+            hited = true;
         }
-        if(hited){
+        if (hited) {
             this.clip.loop(1);
             this.clip.start();
         }

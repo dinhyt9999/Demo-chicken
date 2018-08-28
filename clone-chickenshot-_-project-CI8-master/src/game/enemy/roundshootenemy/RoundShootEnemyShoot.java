@@ -11,7 +11,8 @@ import javax.sound.sampled.Clip;
 
 public class RoundShootEnemyShoot implements Attribute<RoundShootEnemy> {
     private FrameCounter frameCounter = new FrameCounter(300);
-    private Clip clip= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
+    private Clip clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
+
     @Override
     public void run(RoundShootEnemy gameObject) {
         if (this.frameCounter.checkCounter()) {

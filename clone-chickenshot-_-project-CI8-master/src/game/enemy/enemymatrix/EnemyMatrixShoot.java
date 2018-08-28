@@ -17,13 +17,13 @@ public class EnemyMatrixShoot implements Attribute<EnemyMatrix> {
     private Clip clip;
 
     public EnemyMatrixShoot() {
-        this.clip= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
+        this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
     }
 
     @Override
     public void run(EnemyMatrix enemyMatrix) {
-        int shoot=random.nextInt(2);
-        if (this.frameCounter.checkCounter() && shoot==1) {
+        int shoot = random.nextInt(2);
+        if (this.frameCounter.checkCounter() && shoot == 1) {
             BulletEnemy bulletEnemy = GameObjectManager.instance.recycle(BulletEnemy.class);
             bulletEnemy.position.set(enemyMatrix.position);
             bulletEnemy.velocity.set(0, random.nextInt(2) + 1);

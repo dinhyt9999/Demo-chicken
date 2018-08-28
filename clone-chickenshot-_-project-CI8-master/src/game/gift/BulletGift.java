@@ -26,7 +26,7 @@ public class BulletGift extends GameObject implements PhysicBody, HitPoints {
 
 
     public BulletGift() {
-      //  this.clip=Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/levelup.wav");
+        //  this.clip=Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/levelup.wav");
         this.velocity = new Vector2D();
         this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/power.png", 25, 25);
         this.boxCollider = new BoxCollider(25, 25);
@@ -61,7 +61,7 @@ public class BulletGift extends GameObject implements PhysicBody, HitPoints {
     public void getHitPoint(GameObject gameObject) {
         if (gameObject instanceof Player) {
             player = GameObjectManager.instance.findPlayer();
-            if (player.force < 6){
+            if (player.force < 6) {
                 player.force++;
 //                this.clip.loop(1);
 //                this.clip.start();

@@ -9,13 +9,13 @@ import utils.Utils;
 import javax.sound.sampled.Clip;
 
 public class PlayerShoot implements Attribute<Player> {
-    private FrameCounter frameCounter ;
+    private FrameCounter frameCounter;
     private float enegy = 0;
     private Clip clip;
 
     public PlayerShoot() {
         this.frameCounter = new FrameCounter(10);
-        this.clip= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Pshooting.wav");
+        this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Pshooting.wav");
     }
 
     @Override

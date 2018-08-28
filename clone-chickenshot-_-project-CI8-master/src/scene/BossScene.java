@@ -23,8 +23,13 @@ public class BossScene implements Scene {
 
         GameObjectManager.instance.add(new Score());
 
+        GameObjectManager.instance.add(new BagHpPlayer());
         GameObjectManager.instance.add(new HitPointPlayer());
         GameObjectManager.instance.add(new HPText());
+
+        GameObjectManager.instance.add(new BagBulletLevel());
+        GameObjectManager.instance.add(new LevelBullet());
+        GameObjectManager.instance.add(new BulletLevel());
 
         GameObjectManager.instance.add(new CreateBulletGift());
     }

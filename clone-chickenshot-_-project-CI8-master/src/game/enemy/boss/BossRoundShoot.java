@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 
 public class BossRoundShoot extends GameObject {
 
-    private Clip clip=Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
+    private Clip clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
 
     public void run(Boss gameObject) {
         for (double angle = 0.0; angle < 360.0; angle += 360 / 15) {

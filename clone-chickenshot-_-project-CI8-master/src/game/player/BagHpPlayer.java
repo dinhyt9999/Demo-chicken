@@ -5,9 +5,9 @@ import renderer.DrawRect;
 
 import java.awt.*;
 
-public class BagEnegyBullet extends GameObject {
-    public BagEnegyBullet() {
+public class BagHpPlayer extends GameObject {
+    public BagHpPlayer() {
         this.renderer = new DrawRect(Color.RED, 150, 25);
-        this.position.set(850, 525);
+        this.position.set(50, 525);
     }
 }

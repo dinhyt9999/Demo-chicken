@@ -47,7 +47,7 @@ public class BulletPlayer extends GameObject implements PhysicBody, HitPoints {
     public void setImage() {
         switch (GameObjectManager.instance.findPlayer().force) {
             case 1: {
-                this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/BulletLevel/cola.png", 40 ,40);
+                this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/BulletLevel/cola.png", 40, 40);
                 break;
             }
             case 2: {
