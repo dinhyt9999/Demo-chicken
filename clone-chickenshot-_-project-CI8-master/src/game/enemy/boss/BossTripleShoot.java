@@ -11,7 +11,7 @@ import javax.sound.sampled.Clip;
 
 public class BossTripleShoot implements Attribute<Boss> {
 
-    private FrameCounter frameCounter = new FrameCounter(10);
+    private FrameCounter frameCounter = new FrameCounter(100);
     private Clip clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/Eshooting.wav");
 
     @Override

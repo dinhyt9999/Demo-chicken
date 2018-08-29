@@ -19,8 +19,8 @@ public class BulletLevel extends GameObject {
         Player player=GameObjectManager.instance.findPlayer();
 //        this.position.set(player.position.x - 10, player.position.y + 25);
         if(player.force!=preForce){
-            this.position.set(350, 525);
-            this.renderer = new RectRenderer(Color.LIGHT_GRAY, player.force*20, 24);
+            this.position.set(350, 527);
+            this.renderer = new RectRenderer(Color.LIGHT_GRAY, player.force*20, 25);
             System.out.println(player.force);
             preForce=player.force;
         }

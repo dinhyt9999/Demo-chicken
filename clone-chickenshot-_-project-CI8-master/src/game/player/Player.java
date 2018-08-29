@@ -4,6 +4,7 @@ import base.GameObject;
 import base.Vector2D;
 import game.enemy.BulletEnemy;
 import game.enemy.MissileEnemy;
+import game.enemy.boss.Boss;
 import game.enemy.enemybehind.EnemyBehind;
 import game.enemy.enemymatrix.EnemyMatrix;
 import game.enemy.enemytravel.EnemyTravel;
@@ -26,14 +27,17 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
     public Vector2D velocity;
     public BoxCollider boxCollider;
     public int angle;
-    private Clip clip;
+    private Clip clipHurt;
+    private Clip clipDestroyed;
+
     public int force;
     public int hitPoints;
     public RunHitObject runHitObject;
 
     public Player() {
-        this.clip = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/hurt.wav");
-        this.hitPoints = 150;
+        this.clipHurt = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/hurt.wav");
+        this.clipDestroyed=Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/player_destroyed.wav");
+        this.hitPoints = 100;
         this.force = 1;
         this.velocity = new Vector2D();
         this.boxCollider = new BoxCollider(60, 50);
@@ -58,8 +62,12 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
     @Override
     public void getHit(GameObject gameObject) {
         getHitPoint(gameObject);
-        if (this.hitPoints <= 0)
+        if (this.hitPoints <= 0){
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
             SceneManager.instance.changeScene(new GameOverScene());
+        }
+
     }
 
     @Override
@@ -70,7 +78,9 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
                 || gameObject instanceof Meteor
                 || gameObject instanceof EnemyGrowUp
                 || gameObject instanceof RoundShootEnemy
-                || gameObject instanceof EnemyBehind) {
+                || gameObject instanceof EnemyBehind
+                || gameObject instanceof Boss
+        ) {
             this.hitPoints -= 3;
             if (this.force > 1) this.force--;
             hited = true;
@@ -81,8 +91,8 @@ public class Player extends GameObject implements PhysicBody, HitPoints {
             hited = true;
         }
         if (hited) {
-            this.clip.loop(1);
-            this.clip.start();
+            this.clipHurt.loop(1);
+            this.clipHurt.start();
         }
     }
 }

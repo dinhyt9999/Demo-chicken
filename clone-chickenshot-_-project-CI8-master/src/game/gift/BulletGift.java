@@ -22,6 +22,7 @@ public class BulletGift extends GameObject implements PhysicBody, HitPoints {
     private RunHitObject runHitObject;
     private int hitPoints;
     private Player player;
+    private Clip clipUpgrade= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/powerup.wav");
     //private Clip clip;
 
 
@@ -52,6 +53,8 @@ public class BulletGift extends GameObject implements PhysicBody, HitPoints {
     public void getHit(GameObject gameObject) {
         getHitPoint(gameObject);
         if (this.hitPoints <= 0) {
+            this.clipUpgrade.loop(1);
+            this.clipUpgrade.start();
             this.isAlive = false;
         }
 

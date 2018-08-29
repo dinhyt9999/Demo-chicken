@@ -23,7 +23,7 @@ public class RoundShootEnemy extends GameObject implements PhysicBody, HitPoints
     private RunHitObject runHitObject;
     private int hitPoints;
     private static final int hp = 5;
-
+    private Clip clipDestroyed= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/enemy_destroyed.wav");
     public RoundShootEnemy() {
 
         this.hitPoints = hp;
@@ -51,6 +51,9 @@ public class RoundShootEnemy extends GameObject implements PhysicBody, HitPoints
     public void getHit(GameObject gameObject) {
         this.getHitPoint(gameObject);
         if (this.hitPoints <= 0) {
+
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
             GameObjectManager.instance.score += 50;
             this.hitPoints = hp;
             this.isAlive = false;

@@ -58,6 +58,7 @@ public class EnemyScene implements Scene {
     private void setupPlayer() {
         Player player = GameObjectManager.instance.recycle(Player.class);
         player.position.set(200, 300);
+        GameObjectManager.instance.score=0;
     }
 
     @Override

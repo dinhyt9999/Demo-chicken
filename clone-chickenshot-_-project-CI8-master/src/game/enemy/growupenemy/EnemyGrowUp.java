@@ -12,7 +12,9 @@ import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
 import renderer.OvalRenderer;
+import utils.Utils;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.util.Random;
 
@@ -26,6 +28,7 @@ public class EnemyGrowUp extends GameObject implements PhysicBody, HitPoints {
     private RunHitObject runHitObject;
     private static final int hp = 6;
     private int hitPoints;
+    private Clip clipDestroyed= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/enemy_destroyed.wav");
 
     public EnemyGrowUp() {
         Random random = new Random();
@@ -65,6 +68,8 @@ public class EnemyGrowUp extends GameObject implements PhysicBody, HitPoints {
         if (this.hitPoints <= 0) {
             this.width = 10;
             this.height = 10;
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
             this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/easter (1).png", this.width, this.height);
             GameObjectManager.instance.score += 30;
             this.hitPoints = hp;

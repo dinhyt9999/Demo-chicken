@@ -6,10 +6,11 @@ import renderer.TextRenderer;
 import scene.SceneManager;
 import scene.StartScene;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 
 public class EndGamePressSpaceText extends GameObject {
-
+    private Clip clip=Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/press.wav");
     public EndGamePressSpaceText() {
         this.position.set(60, 480);
         this.renderer = new TextRenderer(
@@ -22,6 +23,10 @@ public class EndGamePressSpaceText extends GameObject {
 
     @Override
     public void run() {
-        if (KeyboardEvent.instance.isSpace) SceneManager.instance.changeScene(new StartScene());
+        if (KeyboardEvent.instance.isSpace) {
+            this.clip.loop(1);
+            this.clip.start();
+            SceneManager.instance.changeScene(new StartScene());
+        }
     }
 }

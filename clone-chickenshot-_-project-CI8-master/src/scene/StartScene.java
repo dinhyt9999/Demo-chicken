@@ -15,6 +15,7 @@ public class StartScene implements Scene {
         GameObjectManager.instance.recycle(Background.class);
         GameObjectManager.instance.recycle(StartGameText.class);
         GameObjectManager.instance.recycle(StartGamePressSpaceText.class);
+
     }
 
     @Override

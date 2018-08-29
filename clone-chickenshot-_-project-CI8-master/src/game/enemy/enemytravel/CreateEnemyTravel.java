@@ -22,9 +22,9 @@ public class CreateEnemyTravel extends GameObject {
             @Override
             public boolean run(GameObject owner) {
                 if (tempPosition.x == 1024) {
-                    tempVelocity.set(-5f, 2.5f);
+                    tempVelocity.set(-4f, 2f);
                 } else {
-                    tempVelocity.set(5f, 2.5f);
+                    tempVelocity.set(4f, 2f);
                 }
                 for (i = 0; i <= 9; i++) {
                     EnemyTravel enemyTravel = GameObjectManager.instance.recycle(EnemyTravel.class);

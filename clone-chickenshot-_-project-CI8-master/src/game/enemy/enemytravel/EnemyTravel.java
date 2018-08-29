@@ -12,7 +12,9 @@ import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
 import renderer.OvalRenderer;
+import utils.Utils;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 
 public class EnemyTravel extends GameObject implements PhysicBody, HitPoints {
@@ -20,9 +22,10 @@ public class EnemyTravel extends GameObject implements PhysicBody, HitPoints {
     public BoxCollider boxCollider;
     private RunHitObject runHitObject;
     private int hitPoints;
-
+    private Clip clipDestroyed= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/enemy_destroyed.wav");
+    private static final int hp = 1;
     public EnemyTravel() {
-        this.hitPoints = 3;
+        this.hitPoints = hp;
         this.velocity = new Vector2D(2.5f, 2.5f);
         this.boxCollider = new BoxCollider(60, 60);
         this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/chickenegg.png", 60, 60);
@@ -36,7 +39,7 @@ public class EnemyTravel extends GameObject implements PhysicBody, HitPoints {
         this.boxCollider.position.set(this.position.x - 30, this.position.y - 30);
         this.runHitObject.run(this);
 
-        if (this.velocity.x == -5f) {
+        if (this.velocity.x == -4f) {
             if (this.position.x < 0) this.isAlive = false;
         } else {
             if (this.position.x > 1024) this.isAlive = false;
@@ -58,9 +61,12 @@ public class EnemyTravel extends GameObject implements PhysicBody, HitPoints {
     @Override
     public void getHit(GameObject gameObject) {
         this.getHitPoint(gameObject);
-        if (this.hitPoints == 0) {
+        if (this.hitPoints <= 0) {
             GameObjectManager.instance.score += 30;
             this.isAlive = false;
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
+            this.hitPoints=hp;
         }
     }
 

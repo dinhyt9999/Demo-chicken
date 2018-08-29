@@ -12,7 +12,9 @@ import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
 import renderer.OvalRenderer;
+import utils.Utils;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 
 public class Meteor extends GameObject implements PhysicBody, HitPoints {
@@ -22,7 +24,7 @@ public class Meteor extends GameObject implements PhysicBody, HitPoints {
     private RunHitObject runHitObject;
     private int hitPoints;
     private static final int hp = 8;
-
+    private Clip clipDestroyed= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/enemy_destroyed.wav");
     public Meteor() {
         this.hitPoints = hp;
         this.velocity = new Vector2D();
@@ -38,7 +40,10 @@ public class Meteor extends GameObject implements PhysicBody, HitPoints {
         this.boxCollider.position.set((float) (this.position.x - 35), (float) (this.position.y - 35));
         this.runHitObject.run(this);
 
-        if (this.position.y > 600) this.isAlive = false;
+        if (this.position.y > 600){
+            this.hitPoints=hp;
+            this.isAlive = false;
+        }
     }
 
     @Override
@@ -50,6 +55,8 @@ public class Meteor extends GameObject implements PhysicBody, HitPoints {
     public void getHit(GameObject gameObject) {
         this.getHitPoint(gameObject);
         if (this.hitPoints <= 0) {
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
             GameObjectManager.instance.score += 100;
             this.hitPoints = hp;
             this.isAlive = false;

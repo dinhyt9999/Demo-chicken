@@ -23,7 +23,7 @@ public class Score extends GameObject {
         stringScore = String.valueOf(GameObjectManager.instance.score);
         this.renderer = new TextRenderer(stringScore, Color.YELLOW, "Arial", 25);
 
-        if (GameObjectManager.instance.score >= 100 && SceneManager.instance.isBossScene != 1) {
+        if (GameObjectManager.instance.score >= 900 && SceneManager.instance.isBossScene != 1) {
             SceneManager.instance.isBossScene = 1;
             SceneManager.instance.changeScene(new BossScene());
         }

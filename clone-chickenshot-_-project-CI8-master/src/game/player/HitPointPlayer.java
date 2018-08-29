@@ -22,7 +22,7 @@ public class HitPointPlayer extends GameObject {
 //        this.position.set(player.position.x - 10, player.position.y + 25);
         if(player.hitPoints!=preHP){
             this.position.set(50, 525);
-            this.renderer = new RectRenderer(Color.GREEN, player.hitPoints, 25);
+            this.renderer = new RectRenderer(Color.GREEN, (int)((float)player.hitPoints*1.5f), 25);
             preHP=player.hitPoints;
         }
 

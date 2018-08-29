@@ -12,7 +12,9 @@ import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
 import renderer.OvalRenderer;
+import utils.Utils;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 
 public class EnemyMatrix extends GameObject implements PhysicBody, HitPoints {
@@ -22,7 +24,7 @@ public class EnemyMatrix extends GameObject implements PhysicBody, HitPoints {
     private RunHitObject runHitObject;
     private int hitPoints;
     private static final int hp = 1;
-
+    private Clip clipDestroyed= Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/enemy_destroyed.wav");
     public EnemyMatrix() {
         this.hitPoints = hp;
         this.velocity = new Vector2D(2.5f, 0);
@@ -42,7 +44,10 @@ public class EnemyMatrix extends GameObject implements PhysicBody, HitPoints {
         this.attributes.add(new EnemyMatrixMove());
         this.runHitObject.run(this);
 
-        if (this.position.y > 600) this.isAlive = false;
+        if (this.position.y > 600) {
+            this.isAlive = false;
+            this.hitPoints=hp;
+        }
     }
 
     @Override
@@ -60,6 +65,8 @@ public class EnemyMatrix extends GameObject implements PhysicBody, HitPoints {
         getHitPoint(gameObject);
         if (this.hitPoints <= 0) {
             GameObjectManager.instance.score += 10;
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
             this.hitPoints = hp;
             this.isAlive = false;
         }
@@ -73,8 +80,6 @@ public class EnemyMatrix extends GameObject implements PhysicBody, HitPoints {
             Player player = GameObjectManager.instance.findPlayer();
             this.hitPoints -= player.force;
         }
-
-
     }
 }
 

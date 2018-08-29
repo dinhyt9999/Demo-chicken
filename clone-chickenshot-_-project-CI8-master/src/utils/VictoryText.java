@@ -13,7 +13,7 @@ public class VictoryText extends GameObject {
                 "CHICKEN DINNER!",
                 Color.WHITE,
                 "Agency FB",
-                150
+                100
         );
     }
 }

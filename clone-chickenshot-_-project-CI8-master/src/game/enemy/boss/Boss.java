@@ -95,14 +95,16 @@ public class Boss extends GameObject implements PhysicBody, HitPoints {
     public void getHit(GameObject gameObject) {
         this.getHitPoint(gameObject);
         if (this.hitPoints <= 0) {
+            GameObjectManager.instance.score+=500;
+            SceneManager.instance.isBossScene=0;
             SceneManager.instance.changeScene(new VictoryScene());
         }
     }
 
     @Override
     public void getHitPoint(GameObject gameObject) {
-        if (gameObject instanceof Player)
-            this.hitPoints = 0;
+//        if (gameObject instanceof Player)
+//            this.hitPoints = 0;
         if (gameObject instanceof BulletPlayer) {
             Player player = GameObjectManager.instance.findPlayer();
             this.hitPoints -= player.force;

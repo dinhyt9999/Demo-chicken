@@ -5,14 +5,14 @@ import base.GameObjectManager;
 import base.Vector2D;
 import game.player.BulletPlayer;
 import game.player.Player;
-import game.score.Score;
 import physic.BoxCollider;
 import physic.HitPoints;
 import physic.PhysicBody;
 import physic.RunHitObject;
 import renderer.ImageRenderer;
-import renderer.OvalRenderer;
+import utils.Utils;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 
 public class EnemyBehind extends GameObject implements PhysicBody, HitPoints {
@@ -22,6 +22,7 @@ public class EnemyBehind extends GameObject implements PhysicBody, HitPoints {
     private RunHitObject runHitObject;
     private int hitPoints;
     private static final int hp = 2;
+    private Clip clipDestroyed;
 
     public double angle = 0.0;
     // Up = 1, Down = 0
@@ -31,6 +32,7 @@ public class EnemyBehind extends GameObject implements PhysicBody, HitPoints {
 
     public EnemyBehind() {
         this.hitPoints = hp;
+        this.clipDestroyed = Utils.loadAudio("clone-chickenshot-_-project-CI8-master/sound/enemy_destroyed.wav");
         this.velocity = new Vector2D();
         this.boxCollider = new BoxCollider(50, 50);
         this.renderer = new ImageRenderer("clone-chickenshot-_-project-CI8-master/image/bird.png", 50, 50);
@@ -44,9 +46,9 @@ public class EnemyBehind extends GameObject implements PhysicBody, HitPoints {
         this.position.addUp(velocity);
         this.boxCollider.position.set(this.position.x - 25, this.position.y - 25);
         this.runHitObject.run(this);
-
         if (this.position.x > 1024 || this.position.x < 0) {
             this.angle = 0.0;
+            this.hitPoints=hp;
             this.isAlive = false;
         }
     }
@@ -67,6 +69,8 @@ public class EnemyBehind extends GameObject implements PhysicBody, HitPoints {
         if (this.hitPoints <= 0) {
             this.angle = 0.0;
             this.hitPoints = hp;
+            this.clipDestroyed.loop(1);
+            this.clipDestroyed.start();
             GameObjectManager.instance.score += 20;
             this.isAlive = false;
         }

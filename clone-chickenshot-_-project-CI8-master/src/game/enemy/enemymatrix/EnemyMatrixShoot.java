@@ -22,14 +22,19 @@ public class EnemyMatrixShoot implements Attribute<EnemyMatrix> {
 
     @Override
     public void run(EnemyMatrix enemyMatrix) {
-        int shoot = random.nextInt(2);
-        if (this.frameCounter.checkCounter() && shoot == 1) {
-            BulletEnemy bulletEnemy = GameObjectManager.instance.recycle(BulletEnemy.class);
-            bulletEnemy.position.set(enemyMatrix.position);
-            bulletEnemy.velocity.set(0, random.nextInt(2) + 1);
-            this.frameCounter.resetCount();
-            this.clip.loop(1);
-            this.clip.start();
+
+        if (this.frameCounter.checkCounter() ) {
+            int shoot = random.nextInt(100);
+            System.out.println(shoot);
+            if(shoot==1){
+                System.out.println("shoot");
+                BulletEnemy bulletEnemy = GameObjectManager.instance.recycle(BulletEnemy.class);
+                bulletEnemy.position.set(enemyMatrix.position);
+                bulletEnemy.velocity.set(0, random.nextInt(2) + 1);
+                this.frameCounter.resetCount();
+                this.clip.loop(1);
+                this.clip.start();
+            }
         }
     }
 }
